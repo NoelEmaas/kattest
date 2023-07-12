@@ -1,4 +1,5 @@
 import re
+import sys
 import requests
 from bs4 import BeautifulSoup
 
@@ -26,10 +27,9 @@ def get_test_cases(url):
     html_content = response.content
     soup = BeautifulSoup(html_content, 'html.parser')
     test_cases = soup.find_all('pre')
-
+    
     if len(test_cases) == 0:
-        print('This problem does not provide sample test cases.')
-        exit()
+        sys.exit('This problem does not provide sample test cases.')
     else:
         test_cases = parse_test_cases(test_cases)
 

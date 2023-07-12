@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 import subprocess
 
@@ -15,14 +16,12 @@ def compile(file_name):
     elif extension == 'py':
         return
     else:
-        print('Error: Invalid File Type!')
-        exit()   
+        sys.exit('Error: Invalid File Type!')
 
     try:
         subprocess.run(compile_command, shell=True, check=True)
     except subprocess.CalledProcessError as e:
-        print(Fore.RED + f'Compilation Error')
-        exit()
+        sys.exit('Compilation Error')
 
 
 
@@ -41,8 +40,7 @@ def execute(file_name, input_str):
     elif extension == 'py':
         run_command = ['python3', f'{curr_dir}/{file_name}']
     else:
-        print('Error: Invalid File Type!')
-        exit()
+        sys.exit('Error: Invalid File Type!')
 
     process = subprocess.Popen(
         run_command,
@@ -54,7 +52,6 @@ def execute(file_name, input_str):
     stdout, stderr = process.communicate(input=input_str)
     
     if stderr:
-        print(f'Error: {stderr}')
-        exit()
+        sys.exit(f'Error: {stderr}')
         
     return stdout
