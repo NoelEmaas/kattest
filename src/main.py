@@ -7,8 +7,7 @@ def main ():
     parameters = sys.argv[1:]
 
     if len(parameters) != 2:
-        print('Invalid input parameters!')
-        exit()
+        sys.exit('Invalid input parameters!')
 
     file_name = parameters[0]
     problem = parameters[1]
