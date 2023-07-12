@@ -27,10 +27,14 @@ def get_test_cases(url):
     html_content = response.content
     soup = BeautifulSoup(html_content, 'html.parser')
     test_cases = soup.find_all('pre')
+
+    search_phrase = 'Sample Input'
+    has_test_cases = soup.find_all(text=lambda text: text and search_phrase.lower() in text.lower())
     
-    if len(test_cases) == 0:
-        sys.exit('This problem does not provide sample test cases.')
-    else:
+    if has_test_cases:
         test_cases = parse_test_cases(test_cases)
+    else:
+        sys.exit('This problem does not provide sample test cases.')
+
 
     return test_cases
