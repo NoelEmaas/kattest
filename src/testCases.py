@@ -22,12 +22,14 @@ def parse_test_cases(raw_test_cases):
     return test_cases
 
 
-def get_test_cases(url):
-    response = requests.get(url, data={'script' : 'true'})
-    
-    if response.status_code != 200:
-        sys.exit('Error: problem does not exist!')
 
+def get_test_cases(url):
+    try:
+        response = requests.get(url, data={'script' : 'true'})
+        if response.status_code != 200:
+            sys.exit('Error: problem does not exist!')
+    except requests.exceptions.RequestException:
+        sys.exit('An error occured getting test cases.')
 
     html_content = response.content
     soup = BeautifulSoup(html_content, 'html.parser')
