@@ -24,6 +24,11 @@ def parse_test_cases(raw_test_cases):
 
 def get_test_cases(url):
     response = requests.get(url, data={'script' : 'true'})
+    
+    if response.status_code != 200:
+        sys.exit('Error: problem does not exist!')
+
+
     html_content = response.content
     soup = BeautifulSoup(html_content, 'html.parser')
     test_cases = soup.find_all('pre')
