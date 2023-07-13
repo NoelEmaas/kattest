@@ -2,6 +2,8 @@
 
 <samp>A Kattis tester that will automatically test your code with all the sample test cases of a Kattis problem.</samp>
 
+> **Note**
+> This project has been merged to [Katapult](https://github.com/bibookss/katapult)
 
 <samp> Supported Languages </samp>
 ------------
